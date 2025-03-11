@@ -25,12 +25,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          sudo apt-get install -y xvfb
 
       - name: Run Selenium tests and generate Allure report
         env:
           ENVIRONMENT: dev
         run: |
-          behave -f allure_behave.formatter:AllureFormatter -o reports/allure-results --tags=@Regression
+          xvfb-run --auto-servernum behave -f allure_behave.formatter:AllureFormatter -o reports/allure-results --tags=@Regression
 
 
       - name: Upload Allure Results
