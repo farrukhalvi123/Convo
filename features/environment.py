@@ -39,13 +39,17 @@ def before_scenario(context, scenario):
     # If running in parallel, pick a browser for this scenario
     if not context.browser_name:
         context.browser_name = context.browsers[0]['name']
-        headless = context.browsers[0].get('headless', False)
+        is_ci = os.getenv("CI", "false").lower() == "true"
+        headless = is_ci or context.browsers[0].get('headless', False)
 
     # Create WebDriver instance based on the selected browser
     if context.browser_name == "chrome":
         options = webdriver.ChromeOptions()
         if headless:
-            options.add_argument('--headless')
+            options.add_argument('--headless=new')  # Use "--headless=new" for Chrome 109+
+            options.add_argument("--disable-gpu")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
         context.browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         context.browser.maximize_window()
 
