@@ -1,5 +1,7 @@
 import os
 import time
+import pyautogui
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 class FileUploadPage:
@@ -8,9 +10,13 @@ class FileUploadPage:
         self.upload_button = "//input[@id='file-upload']"
 
     def upload_file(self):
-        # try:
-            filepath = os.path.join(os.getcwd(),"screenshots","Testing upload functionality with pyautogui.png")
+            filepath = os.path.join(os.getcwd(),"screenshots"," -- @1.3 .png")
             uploadbtn = self.browser.find_element(By.XPATH,self.upload_button)
-            self.browser.execute_script("arguments[0].style.display = 'block'; arguments[0].setAttribute('value', arguments[1]);", filepath,uploadbtn)
-            time.sleep(3)
+
+            action = ActionChains(self.browser)
+            action.move_to_element(uploadbtn).click().perform()
+
+            pyautogui.write(filepath)
+            pyautogui.press("enter") # This may cause problem while running on CICD
+            time.sleep(5)
 

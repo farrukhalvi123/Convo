@@ -1,4 +1,5 @@
 Feature: Create Test Scenarios for Login
+  @Regression
   Scenario Outline: Login Test Case
     Given User is on HeroUk App login Page
     When User Logs in with <username> and <password>

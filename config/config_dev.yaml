@@ -1,7 +1,7 @@
 base_url: "https://the-internet.herokuapp.com"
 browsers:
   - name: "chrome"
-    headless: True
+    headless: False
 #  - name: "firefox"
 #    headless: False
 #  - name: "chrome"

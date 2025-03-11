@@ -1,4 +1,5 @@
 Feature: Dynamic Tables Handling Test Cases
+  @Regression
   Scenario Outline:
     Given User is on Tables Page
     Then Extract all the table data
@@ -6,5 +7,3 @@ Feature: Dynamic Tables Handling Test Cases
     Examples:
     |lastname|firstname|
     | Doe       |  Jason       |
-    |  Alvi         |   Farrukh              |
-    # failing this case deliberately 

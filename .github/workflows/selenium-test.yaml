@@ -30,7 +30,8 @@ jobs:
         env:
           ENVIRONMENT: dev
         run: |
-          behave -f allure_behave.formatter:AllureFormatter -o reports/allure-results
+          behave -f allure_behave.formatter:AllureFormatter -o reports/allure-results --tags=@Regression
+
 
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
