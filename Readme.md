@@ -76,7 +76,7 @@ C│── features/
 │   ├── config/         # Configuration files (YAML)
 │   ├── reports/        # Test results & Allure reports
 │   ├── environment.py  # Hooks (before/after scenario)
-│   ├── example.feature # Sample BDD feature file
+│   ├── *.feature       # All BDD feature files
 │
 │── .github/workflows/  # CI/CD pipelines (GitHub Actions)
 │── requirements.txt    # Python dependencies
