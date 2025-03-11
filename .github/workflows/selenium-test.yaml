@@ -3,11 +3,10 @@ name: Selenium Tests
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
-  workflow_dispatch:  # Allows manual trigger
+      - main
 
 jobs:
   test:
@@ -40,7 +39,7 @@ jobs:
           behave features/ --format html --outfile reports/behave_report.html
 
       - name: Upload HTML report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Behave-HTML-Report
-          path: reports/behave_rep
+          path: reports/behave_report.html
