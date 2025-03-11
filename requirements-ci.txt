@@ -1,0 +1,10 @@
+selenium==4.9.0
+behave
+webdriver-manager
+pyyaml
+allure-behave
+webdriver-manager
+pytest
+pytest-xdist
+allure-behave
+pyautogui
