@@ -7,3 +7,4 @@ webdriver-manager
 pytest
 pytest-xdist
 allure-behave
+pyautogui
