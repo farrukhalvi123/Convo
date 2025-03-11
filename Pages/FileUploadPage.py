@@ -1,6 +1,8 @@
 import os
 import time
-import pyautogui
+IS_CI = os.getenv("CI") == "true"
+if not IS_CI:
+    import pyautogui
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
