@@ -31,7 +31,7 @@ class DynamicTablePage():
 
     def verify_table_data(self,first_name,last_name):
         try:
-            table_data = self.get_table_data()  # Call the method properly
+            table_data = self.get_table_data()  # Saving table data in a variable for later assertion
 
             for row in table_data[1:]:  # Skip header row
                 if last_name in row and first_name in row:

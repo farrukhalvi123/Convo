@@ -11,7 +11,7 @@ def before_all(context):
     # Get the environment variable to choose environment (default: 'dev')
     environment = os.getenv('ENVIRONMENT', 'dev')  # Default to 'dev' if not set
 
-    # Load the YAML configuration file for the specified environment
+    # Load the YAML configuration file for the specified environment (only 1 for this project)
     config_path = f'config/config_{environment}.yaml'
 
     with open(config_path) as f:
@@ -40,7 +40,7 @@ def before_scenario(context, scenario):
     if not context.browser_name:
         context.browser_name = context.browsers[0]['name']
         is_ci = os.getenv("CI", "false").lower() == "true"
-        headless = is_ci or context.browsers[0].get('headless', False)
+        headless = is_ci or context.browsers[0].get('headless', False) # This makes sure CICD always runs in headless mode
 
     # Create WebDriver instance based on the selected browser
     if context.browser_name == "chrome":
@@ -53,7 +53,7 @@ def before_scenario(context, scenario):
         context.browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         context.browser.maximize_window()
 
-    elif context.browser_name == "firefox":
+    elif context.browser_name == "firefox": # change 'chrome' to 'firefox' in config_dev.yaml file to run your test on Firefox
         options = webdriver.FirefoxOptions()
         if headless:
             options.add_argument('--headless')
@@ -68,7 +68,7 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
-    if scenario.status == "failed":  # Check if the test failed
+    if scenario.status == "failed":  # Check if the test failed. If test fails this takes screenshot globally
         if hasattr(context, "browser"):
             screenshot_dir = "screenshots"
             os.makedirs(screenshot_dir, exist_ok=True)  # Create directory if it doesn't exist

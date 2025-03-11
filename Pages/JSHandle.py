@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 class JSHandle():
     def __init__(self,browser):
         self.browser = browser
-
+    #Generic method that can handle any type of Browser Alerts
     def popup_appear(self,popuptype):
         try:
             self.JSalertbtn = "//button[normalize-space()='Click for JS Alert']"

@@ -19,10 +19,6 @@ class LoginPage():
             self.browser.find_element(By.XPATH,self.loginbtn).click()
         except Exception as e:
             print("Error Username or Password not found or incorrect ")
-
-
-
-
     def postlogin(self):
        try:
         logoutbtn = WebDriverWait(self.browser, 10).until(presence_of_element_located((By.XPATH,self.logoutbtn)))
