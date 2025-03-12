@@ -1,0 +1,7 @@
+.idea/Convo.iml
+.idea/misc.xml
+ Pages/__pycache__/
+  Utilities/
+ features/steps/__pycache__/
+ reports/allure-results/
+ screenshots/
