@@ -26,14 +26,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-ci.txt
 
-      - name: Run Selenium tests and generate Allure report
+      - name: Run Selenium tests and generate Allure results
         env:
           ENVIRONMENT: dev
         run: |
+          # Run your tests with behave and generate allure results
           behave -f allure_behave.formatter:AllureFormatter -o reports/allure-results --tags=@Regression -D headless=true
 
+      - name: Install Allure command-line tool
+        run: |
+          # Install Allure command-line tool
+          wget https://github.com/allure-framework/allure2/releases/download/2.14.0/allure-2.14.0.tgz
+          tar -zxvf allure-2.14.0.tgz
+          sudo mv allure-2.14.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
 
-      
+      - name: Generate Allure report
+        run: |
+          # Generate the Allure report from the allure-results folder
+          allure generate reports/allure-results --clean -o reports/allure-report
 
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
